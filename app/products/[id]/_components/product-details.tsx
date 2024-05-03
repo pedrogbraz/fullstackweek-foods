@@ -45,7 +45,7 @@ const ProductDetails = ({ product, complementaryProducts }: ProductDetailsProps)
     });
 
   return (
-    <div className="py-5">
+    <div className="z-50 relative mt-[-1.5rem] rounded-tl-3xl py-5 rounded-tr-3xl bg-white">
       <div className="flex items-center gap-[0.375rem] px-5">
         <div className="relative h-6 w-6">
           <Image

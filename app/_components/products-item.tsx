@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import Image from "next/image";
-import { calculateProductTotalPrice, formatCurrency } from "./_helpers/price";
+import { calculateProductTotalPrice, formatCurrency } from "./_helper/price";
 import { ArrowDownIcon } from "lucide-react";
 
 interface ProductsItemProps {

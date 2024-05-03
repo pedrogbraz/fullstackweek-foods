@@ -1,16 +1,12 @@
 import Image from "next/image";
 
 import { Restaurant } from "@prisma/client";
-import { Prisma } from "@prisma/client";
 
-import { calculateProductTotalPrice, formatCurrency } from "./_helper/price";
+import { formatCurrency } from "./_helper/price";
 import {
   AlarmCheck,
-  ArrowDownIcon,
   BikeIcon,
-  Heart,
   HeartIcon,
-  Star,
   StarIcon,
 } from "lucide-react";
 import { Button } from "./ui/button";

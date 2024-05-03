@@ -31,7 +31,10 @@ interface ProductDetailsProps {
   }>[];
 }
 
-const ProductDetails = ({ product, complementaryProducts }: ProductDetailsProps) => {
+const ProductDetails = ({
+  product,
+  complementaryProducts,
+}: ProductDetailsProps) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncreaseQuantityClick = () =>
@@ -45,7 +48,7 @@ const ProductDetails = ({ product, complementaryProducts }: ProductDetailsProps)
     });
 
   return (
-    <div className="z-50 relative mt-[-1.5rem] rounded-tl-3xl py-5 rounded-tr-3xl bg-white">
+    <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5">
       <div className="flex items-center gap-[0.375rem] px-5">
         <div className="relative h-6 w-6">
           <Image
@@ -59,7 +62,7 @@ const ProductDetails = ({ product, complementaryProducts }: ProductDetailsProps)
           {product.restaurant.name}
         </span>
       </div>
-      <h1 className="mb-2 mt-1 text-xl font-semibold px-5">{product.name}</h1>
+      <h1 className="mb-2 mt-1 px-5 text-xl font-semibold">{product.name}</h1>
       <div className="flex justify-between px-5">
         <div>
           <div className="flex items-center gap-2">
@@ -93,7 +96,7 @@ const ProductDetails = ({ product, complementaryProducts }: ProductDetailsProps)
         </div>
       </div>
       <div className="px-5">
-        <Card className="flex justify-around py-3 bg-transparent mt-6">
+        <Card className="mt-6 flex justify-around bg-transparent py-3">
           <div className="flex flex-col items-center">
             <div className="flex items-center gap-1 text-muted-foreground">
               <span className="text-xs">Entrega</span>
@@ -112,24 +115,18 @@ const ProductDetails = ({ product, complementaryProducts }: ProductDetailsProps)
               <span className="text-xs">Entrega</span>
               <AlarmCheck size={14} />
             </div>
-            {Number(product.restaurant.deliveryFee) > 0 ? (
-              <p className="text-xs font-semibold">
-                {Number(product.restaurant.deliveryTimeMinutes)} min
-              </p>
-            ) : (
-              <p className="text-xs font-semibold">Grátis</p>
-            )}
+            <p className="text-xs font-semibold">{product.restaurant.deliveryTimeMinutes} min</p>
           </div>
         </Card>
       </div>
 
       <div className="mt-6 space-y-3 px-5">
         <h3 className="font-semibold">Sobre</h3>
-        <p className="text-muted-foreground text-sm">{product.description}</p>
+        <p className="text-sm text-muted-foreground">{product.description}</p>
       </div>
 
       <div className="mt-6 space-y-3">
-        <h3 className="font-semibold px-5">Sucos</h3>
+        <h3 className="px-5 font-semibold">Sucos</h3>
         <ProductList products={complementaryProducts} />
       </div>
     </div>

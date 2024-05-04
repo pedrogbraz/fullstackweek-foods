@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { Prisma } from "@prisma/client";
 
-import { calculateProductTotalPrice, formatCurrency } from "./_helper/price";
+import { calculateProductTotalPrice, formatCurrency } from "../_helpers/price";
 import { ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
 

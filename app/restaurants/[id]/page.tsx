@@ -60,7 +60,6 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
     <div>
       <RestaurantImage restaurant={restaurant} />
 
-      <div>
         <div className="relative z-50 mt-[-1.5rem] flex items-center justify-between rounded-tl-3xl rounded-tr-3xl p-5 bg-white">
           <div className="flex items-center gap-2">
             <div className="relative h-10 w-10">
@@ -74,13 +73,13 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
             <span className="font-semibold">{restaurant.name}</span>
           </div>
 
-          <div className="flex items-center gap-1 rounded-full bg-[#323232] px-3 py-2 text-white">
+          <div className="flex items-center gap-1 rounded-full bg-foreground px-3 py-2 text-white">
             <StarIcon size={12} className="fill-yellow-400 text-yellow-400" />
             <span className="text-xs font-semibold">5.0</span>
           </div>
         </div>
 
-        <div>
+        <div className="bg-white">
           <Card className="mx-5 mb-4 flex justify-around bg-transparent py-4">
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-1 text-muted-foreground">
@@ -110,7 +109,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
             {restaurant.categories.map((category) => (
               <div
                 key={category.id}
-                className="min-w-[167px] rounded-lg bg-[#E4E4E5] text-center"
+                className="min-w-[167px] rounded-lg bg-[#F4F4F4] text-center"
               >
                 <span className="text-xs text-muted-foreground">
                   {category.name}
@@ -124,7 +123,6 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
             <ProductList products={restaurant.products} />
           </div>
         </div>
-      </div>
 
       {restaurant.categories.map((category) => (
         <div className="mt-6 space-y-4" key={category.id}>
@@ -137,3 +135,4 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
 };
 
 export default RestaurantPage;
+

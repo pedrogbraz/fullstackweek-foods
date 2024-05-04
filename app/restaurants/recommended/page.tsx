@@ -8,7 +8,7 @@ const RecommendedRestaurants = async () => {
     <>
       <Header />
       <div className="py-6 px-5">
-        <h1 className="mb-6 text-lg font-semibold">Restaurantes Recomendados</h1>
+        <h2 className="mb-6 text-lg font-semibold">Restaurantes Recomendados</h2>
         <div className="flex flex-col gap-6">
           {restaurants.map((restaurant) => (
             <RestaurantItem

@@ -44,7 +44,7 @@ const Home = async () => {
         />
       </div>
 
-      <div className="space-y-4 pt-6">
+      <div className="space-y-4 pt-6 bg-white">
         <div className="flex items-center justify-between px-5">
           <h2 className="font-semibold">Pedidos Recomendados</h2>
 

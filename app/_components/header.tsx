@@ -6,7 +6,7 @@ import {
   CupSoda,
   Fish,
   Grape,
-  Heart,
+  HeartIcon,
   HomeIcon,
   IceCream,
   LogInIcon,
@@ -14,7 +14,7 @@ import {
   MenuIcon,
   Pizza,
   Sandwich,
-  ScrollText,
+  ScrollTextIcon,
   Utensils,
 } from "lucide-react";
 import Link from "next/link";
@@ -27,37 +27,39 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Separator } from "@radix-ui/react-separator";
-import MenuOptions from "./menu-options";
+import { Separator } from "./ui/separator";
 
 const Header = () => {
-  const { data, status } = useSession();
+  const { data } = useSession();
 
   const handleSignOutClick = () => signOut();
   const handleSignInClick = () => signIn();
+
   return (
-    <div className="flex justify-between bg-white px-5 pt-6">
-      <div className="relative h-[30px] w-[100px]">
-        <Link href="/">
+    <div className="flex justify-between px-5 pt-6">
+      <Link href="/">
+        <div className="relative h-[30px] w-[100px]">
           <Image
             src="/logo.png"
             alt="FSW Foods"
+            sizes="100%"
             fill
             className="object-cover"
           />
-        </Link>
-      </div>
+        </div>
+      </Link>
 
       <Sheet>
-        <SheetTrigger>
+        <SheetTrigger asChild>
           <Button
             size="icon"
-            variant="outline"
-            className="border-none bg-transparent"
+            variant="ghost"
+            className="w-9 h-9 hover:bg-primary hover:text-white duration-300"
           >
             <MenuIcon />
           </Button>
         </SheetTrigger>
+
         <SheetContent>
           <SheetHeader>
             <SheetTitle className="text-left">Menu</SheetTitle>
@@ -88,11 +90,11 @@ const Header = () => {
             </>
           ) : (
             <>
-              <div className="flex items-center justify-between pt-6">
-                <h2 className="font-semibold">Faça seu login</h2>
+              <div className="flex items-center justify-between pt-10">
+                <h2 className="px-4 font-semibold">Olá. Faça seu login!</h2>
                 <Button
+                  className="h-9 w-9"
                   size="icon"
-                  className="h-10 w-10"
                   onClick={handleSignInClick}
                 >
                   <LogInIcon size={18} />
@@ -101,52 +103,144 @@ const Header = () => {
             </>
           )}
 
-          <div className="py-4">
-            <Separator className="h-[2px] rounded-full bg-muted" />
+          <div className="py-3">
+            <Separator />
           </div>
 
           <div className="space-y-2">
-            <MenuOptions icon={<HomeIcon size={16} />} text="Início" />
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+            >
+              <HomeIcon size={16} />
+              <Link href="/">
+                <span className="block">Início</span>
+              </Link>
+            </Button>
+
             {data?.user && (
               <>
-                <MenuOptions
-                  icon={<ScrollText size={16} />}
-                  text="Meus Pedidos"
-                />
-                <MenuOptions
-                  icon={<Heart size={16} />}
-                  text="Restaurantes Favoritos"
-                />
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+                  asChild
+                >
+                  <Link href="/my-orders">
+                    <ScrollTextIcon size={16} />
+                    <span className="block">Meus Pedidos</span>
+                  </Link>
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+                  asChild
+                >
+                  <Link href="/my-favorite-restaurants">
+                    <HeartIcon size={16} />
+                    <span className="block">Restaurantes Favoritos</span>
+                  </Link>
+                </Button>
               </>
             )}
           </div>
 
           <div className="py-3">
-            <Separator className="h-[2px] rounded-full bg-muted" />
+            <Separator />
           </div>
 
-          <div className="space-y-2">
-            <MenuOptions icon={<Utensils size={16} />} text="Pratos" />
-            <MenuOptions icon={<Sandwich size={16} />} text="Lanches" />
-            <MenuOptions icon={<Pizza size={16} />} text="Pizza" />
-            <MenuOptions icon={<Fish size={16} />} text="Japonesa" />
-            <MenuOptions icon={<IceCream />} text="Sobremesas" />
-            <MenuOptions icon={<Grape size={16} />} text="Sucos" />
-            <MenuOptions icon={<CupSoda size={16} />} text="Refrigerantes" />
+          <div className="space-y-1">
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-orders">
+                <Utensils size={16} />
+                <span className="block">Pratos</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-favorite-restaurants">
+                <Sandwich size={16} />
+                <span className="block">Lanches</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-favorite-restaurants">
+                <Pizza size={16} />
+                <span className="block">Pizza</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-favorite-restaurants">
+                <Fish size={16} />
+                <span className="block">Japonesa</span>
+              </Link>
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-favorite-restaurants">
+                <IceCream size={16} />
+                <span className="block">Sobremesas</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-favorite-restaurants">
+                <Grape size={16} />
+                <span className="block">Sucos</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
+              asChild
+            >
+              <Link href="/my-favorite-restaurants">
+                <CupSoda size={16} />
+                <span className="block">Refrigerantes</span>
+              </Link>
+            </Button>
           </div>
 
-          <div className="py-3">
-            <Separator className="h-[2px] rounded-full bg-muted" />
-          </div>
+          {data?.user && (
+            <div className="py-3">
+              <Separator />
+            </div>
+          )}
 
           {data?.user && (
             <Button
               variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full hover:bg-primary hover:text-white"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal  duration-150 hover:bg-primary hover:text-white"
               onClick={handleSignOutClick}
             >
-              <LogOutIcon size={18} />
-              <span className="block text-sm font-medium">Sair da conta</span>
+              <LogOutIcon size={16} />
+              <span className="block">Sair da conta</span>
             </Button>
           )}
         </SheetContent>

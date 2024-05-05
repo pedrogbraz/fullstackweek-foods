@@ -1,6 +1,7 @@
 "use client";
 
 import Cart from "@/app/_components/cart";
+import DeliveryInfo from "@/app/_components/delivery-info";
 import DiscountBadge from "@/app/_components/discount-badge";
 import ProductList from "@/app/_components/product-list";
 import {
@@ -146,30 +147,7 @@ const ProductDetails = ({
         </div>
 
         <div className="px-5">
-          <Card className="mt-6 flex justify-around bg-transparent py-3">
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-1 text-muted-foreground">
-                <span className="text-xs">Entrega</span>
-                <BikeIcon size={14} />
-              </div>
-              {Number(product.restaurant.deliveryFee) > 0 ? (
-                <p className="text-xs font-semibold">
-                  {formatCurrency(Number(product.restaurant.deliveryFee))}
-                </p>
-              ) : (
-                <p className="text-xs font-semibold">Grátis</p>
-              )}
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-1 text-muted-foreground">
-                <span className="text-xs">Entrega</span>
-                <AlarmCheck size={14} />
-              </div>
-              <p className="text-xs font-semibold">
-                {product.restaurant.deliveryTimeMinutes} min
-              </p>
-            </div>
-          </Card>
+          <DeliveryInfo restaurant={product.restaurant} />
         </div>
 
         <div className="mt-6 space-y-3 px-5">

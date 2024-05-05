@@ -7,6 +7,7 @@ import { Card } from "@/app/_components/ui/card";
 import { formatCurrency } from "@/app/_helpers/price";
 import { Button } from "@/app/_components/ui/button";
 import ProductList from "@/app/_components/product-list";
+import CartBanner from "./_components/cart-banner";
 
 interface RestaurantPageProps {
   params: {
@@ -130,6 +131,8 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
           <ProductList products={category.Product} />
         </div>
       ))}
+
+      <CartBanner restaurant={restaurant}/>
     </div>
   );
 };

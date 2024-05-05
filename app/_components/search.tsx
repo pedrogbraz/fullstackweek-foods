@@ -21,8 +21,8 @@ const Search = () => {
       return;
     }
 
-    router.push(`/restaurants?search=${search}`)
-  }
+    router.push(`/restaurants?search=${search}`);
+  };
 
   return (
     <form className="flex gap-2" onSubmit={handleSearchSubmit}>

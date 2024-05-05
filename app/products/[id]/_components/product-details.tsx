@@ -15,7 +15,6 @@ import {
   AlertDialogTitle,
 } from "@/app/_components/ui/alert-dialog";
 import { Button } from "@/app/_components/ui/button";
-import { Card } from "@/app/_components/ui/card";
 import {
   Sheet,
   SheetContent,
@@ -28,7 +27,7 @@ import {
   calculateProductTotalPrice,
 } from "@/app/_helpers/price";
 import { Prisma } from "@prisma/client";
-import { AlarmCheck, BikeIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
 

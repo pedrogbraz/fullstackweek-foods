@@ -1,9 +1,8 @@
 "use client";
 
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-
 import { SearchIcon } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { FormEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -17,6 +16,7 @@ const Search = () => {
 
   const handleSearchSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
     if (!search) {
       return;
     }
@@ -28,12 +28,12 @@ const Search = () => {
     <form className="flex gap-2" onSubmit={handleSearchSubmit}>
       <Input
         placeholder="Buscar restaurantes"
-        className="border-none bg-[#F4F4F5]"
+        className="border-none"
         onChange={handleChange}
         value={search}
       />
       <Button size="icon" type="submit">
-        <SearchIcon size={18} />
+        <SearchIcon size={20} />
       </Button>
     </form>
   );

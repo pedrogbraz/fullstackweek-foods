@@ -8,6 +8,7 @@ import ProductList from "@/app/_components/product-list";
 import CartBanner from "./_components/cart-banner";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/auth";
+import Header from "@/app/_components/header";
 
 interface RestaurantPageProps {
   params: {
@@ -66,21 +67,22 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
 
   return (
     <div>
+      <Header />
+      
       <RestaurantImage
         restaurant={restaurant}
         userFavoriteRestaurants={userFavoriteRestaurants}
       />
 
-      <div className="relative z-50 mt-[-1.5rem] flex items-center justify-between rounded-tl-3xl rounded-tr-3xl bg-white px-5 pt-5">
+      <div className="relative z-50 mt-[-1.5rem] flex items-center justify-between rounded-tl-3xl rounded-tr-3xl bg-white px-5 pt-5 ">
         {/* TITULO */}
         <div className="flex items-center gap-[0.375rem]">
-          <div className="relative h-8 w-8">
+          <div className="relative h-8 w-8 ">
             <Image
               src={restaurant.imageUrl}
               alt={restaurant.name}
               fill
-              sizes="100%"
-              className="rounded-full object-cover"
+              className="sizes-[100%] rounded-full object-cover md:w-[750px]"
             />
           </div>
           <h1 className="text-xl font-semibold">{restaurant.name}</h1>

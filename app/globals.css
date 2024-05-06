@@ -57,3 +57,17 @@
     @apply text-foreground antialiased;
   }
 }
+
+@media (max-width: 768px) {
+  #xs {
+    display: none;
+  }
+  #xss {
+    display: none;
+  }
+  #content {
+    display: none;
+  }
+  
+}
+

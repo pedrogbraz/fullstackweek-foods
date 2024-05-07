@@ -7,7 +7,7 @@ const RestaurantList = async () => {
   const session = await getServerSession(authOptions);
 
   // TODO: pegar restaurantes com maior número de pedidos
-  const restaurants = await db.restaurant.findMany({ take: 3 });
+  const restaurants = await db.restaurant.findMany({ take: 5 });
   const userFavoriteRestaurants = await db.userFavoriteRestaurant.findMany({
     where: { userId: session?.user?.id },
   });

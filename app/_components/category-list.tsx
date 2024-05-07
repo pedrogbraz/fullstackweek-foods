@@ -2,7 +2,11 @@ import { db } from "../_lib/prisma";
 import CategoryItem from "./category-item";
 
 const CategoryList = async () => {
-  const categories = await db.category.findMany({});
+  // Buscar as sete categorias exclusivas do banco de dados
+  const categories = await db.category.findMany({
+    distinct: ["name"], // Garantir que as categorias sejam exclusivas
+    take: 7 // Limitar a consulta para retornar apenas 7 categorias
+  });
 
   return (
     <div className="grid grid-cols-2 gap-3 md:flex">

@@ -8,6 +8,7 @@ const description =
 const createBurguers = async (
   desertsCategoryId: string,
   juicesCategoryId: string,
+  sodasCategoryId: string,
 ) => {
   const burguersCategory = await prismaClient.category.create({
     data: {
@@ -75,6 +76,7 @@ const createBurguers = async (
 
     await createDeserts(restaurant.id, desertsCategoryId);
     await createJuices(restaurant.id, juicesCategoryId);
+    await createSodas(restaurant.id, sodasCategoryId);
 
     console.log(`Created ${restaurant.name}`);
 
@@ -199,185 +201,10 @@ const createBurguers = async (
   }
 };
 
-const createPizzas = async (
-  desertsCategoryId: string,
-  juicesCategoryId: string,
-) => {
-  const pizzasCategory = await prismaClient.category.create({
-    data: {
-      name: "Pizzas",
-      imageUrl:
-        "https://utfs.io/f/d9ca0163-6bc8-42dc-bbb3-377636849cd8-mtj7yz.png",
-    },
-  });
-
-  const pizzaRestaurants = [
-    {
-      name: "Pizza Hut",
-      imageUrl:
-        "https://utfs.io/f/f50301c9-7968-4d76-b4a3-b8ed24e2089c-5p2j0.png",
-      deliveryFee: 5,
-      deliveryTimeMinutes: 30,
-      categories: {
-        connect: {
-          id: pizzasCategory.id,
-        },
-      },
-    },
-    {
-      name: "Omni Pizza",
-      imageUrl:
-        "https://utfs.io/f/8a9eb9dc-6434-4246-91c9-1c0a60a6e5f0-5p2j1.png",
-      deliveryFee: 5,
-      deliveryTimeMinutes: 30,
-      categories: {
-        connect: {
-          id: pizzasCategory.id,
-        },
-      },
-    },
-    {
-      name: "The Pizza Queen",
-      imageUrl:
-        "https://utfs.io/f/e83dc871-19e3-4d39-8163-fb2f1e24b6b1-5p2j2.png",
-      deliveryFee: 0,
-      deliveryTimeMinutes: 45,
-      categories: {
-        connect: {
-          id: pizzasCategory.id,
-        },
-      },
-    },
-    {
-      name: "Pizza House",
-      imageUrl:
-        "https://utfs.io/f/a73ec63a-7fc8-4a23-8d03-62debee79e6a-5p2j3.png",
-      deliveryFee: 10,
-      deliveryTimeMinutes: 20,
-      categories: {
-        connect: {
-          id: pizzasCategory.id,
-        },
-      },
-    },
-  ];
-
-  for (const item of pizzaRestaurants) {
-    const restaurant = await prismaClient.restaurant.create({
-      data: item,
-    });
-
-    await createDeserts(restaurant.id, desertsCategoryId);
-    await createJuices(restaurant.id, juicesCategoryId);
-
-    console.log(`Created ${restaurant.name}`);
-
-    const pizzaProducts = [
-      {
-        name: "Pepperoni Pizza",
-        price: 45,
-        description: description,
-        discountPercentage: 0,
-        imageUrl:
-          "https://utfs.io/f/645ba997-00b1-44ed-9928-b9eb41e93896-berpub.jpg",
-        restaurant: {
-          connect: {
-            id: restaurant.id,
-          },
-        },
-        category: {
-          connect: {
-            id: pizzasCategory.id,
-          },
-        },
-      },
-      {
-        name: "Margarita Pizza",
-        price: 40,
-        description: description,
-        discountPercentage: 5,
-        imageUrl:
-          "https://utfs.io/f/4ee1f69b-e0a3-4166-bae5-b666996bcd3b-berpua.png",
-        restaurant: {
-          connect: {
-            id: restaurant.id,
-          },
-        },
-        category: {
-          connect: {
-            id: pizzasCategory.id,
-          },
-        },
-      },
-      {
-        name: "Hawaiian Pizza",
-        price: 45,
-        description: "A delicious hawaiian pizza",
-        discountPercentage: 5,
-        imageUrl:
-          "https://utfs.io/f/0bb7a869-f369-4506-94ea-6cc23c8dd92f-berpu9.png",
-        restaurant: {
-          connect: {
-            id: restaurant.id,
-          },
-        },
-        category: {
-          connect: {
-            id: pizzasCategory.id,
-          },
-        },
-      },
-      {
-        name: "Vegetarian Pizza",
-        price: 35,
-        description: description,
-        discountPercentage: 0,
-        imageUrl:
-          "https://utfs.io/f/1bb04a24-361c-4e3a-ad2f-81255f2d53b9-berpux.png",
-        restaurant: {
-          connect: {
-            id: restaurant.id,
-          },
-        },
-        category: {
-          connect: {
-            id: pizzasCategory.id,
-          },
-        },
-      },
-      {
-        name: "Meat Lovers Pizza",
-        price: 50,
-        description: description,
-        discountPercentage: 10,
-        imageUrl:
-          "https://utfs.io/f/ead919ee-2e3d-423f-b294-e525f9d6a5b7-berpuy.png",
-        restaurant: {
-          connect: {
-            id: restaurant.id,
-          },
-        },
-        category: {
-          connect: {
-            id: pizzasCategory.id,
-          },
-        },
-      },
-    ];
-
-    for (const product of pizzaProducts) {
-      await prismaClient.product.create({
-        data: product,
-      });
-
-      console.log(`Created ${product.name}`);
-    }
-  }
-};
-
 const createJapanese = async (
   desertsCategoryId: string,
   juicesCategoryId: string,
+  sodasCategoryId: string,
 ) => {
   const japaneseCategory = await prismaClient.category.create({
     data: {
@@ -446,7 +273,8 @@ const createJapanese = async (
     console.log(`Created ${restaurant.name}`);
 
     await createDeserts(restaurant.id, desertsCategoryId);
-    await createJuices(restaurant.id, juicesCategoryId);
+    await createJuices(restaurant.id, sodasCategoryId);
+    await createSodas(restaurant.id, sodasCategoryId);
 
     const japaneseProducts = [
       {
@@ -569,9 +397,188 @@ const createJapanese = async (
   }
 };
 
+const createPizzas = async (
+  desertsCategoryId: string,
+  juicesCategoryId: string,
+  sodasCategoryId: string,
+) => {
+  const pizzasCategory = await prismaClient.category.create({
+    data: {
+      name: "Pizzas",
+      imageUrl:
+        "https://utfs.io/f/d9ca0163-6bc8-42dc-bbb3-377636849cd8-mtj7yz.png",
+    },
+  });
+
+  const pizzaRestaurants = [
+    {
+      name: "Pizza Hut",
+      imageUrl:
+        "https://utfs.io/f/f50301c9-7968-4d76-b4a3-b8ed24e2089c-5p2j0.png",
+      deliveryFee: 5,
+      deliveryTimeMinutes: 30,
+      categories: {
+        connect: {
+          id: pizzasCategory.id,
+        },
+      },
+    },
+    {
+      name: "Omni Pizza",
+      imageUrl:
+        "https://utfs.io/f/8a9eb9dc-6434-4246-91c9-1c0a60a6e5f0-5p2j1.png",
+      deliveryFee: 5,
+      deliveryTimeMinutes: 30,
+      categories: {
+        connect: {
+          id: pizzasCategory.id,
+        },
+      },
+    },
+    {
+      name: "The Pizza Queen",
+      imageUrl:
+        "https://utfs.io/f/e83dc871-19e3-4d39-8163-fb2f1e24b6b1-5p2j2.png",
+      deliveryFee: 0,
+      deliveryTimeMinutes: 45,
+      categories: {
+        connect: {
+          id: pizzasCategory.id,
+        },
+      },
+    },
+    {
+      name: "Pizza House",
+      imageUrl:
+        "https://utfs.io/f/a73ec63a-7fc8-4a23-8d03-62debee79e6a-5p2j3.png",
+      deliveryFee: 10,
+      deliveryTimeMinutes: 20,
+      categories: {
+        connect: {
+          id: pizzasCategory.id,
+        },
+      },
+    },
+  ];
+
+  for (const item of pizzaRestaurants) {
+    const restaurant = await prismaClient.restaurant.create({
+      data: item,
+    });
+
+    await createDeserts(restaurant.id, desertsCategoryId);
+    await createJuices(restaurant.id, juicesCategoryId);
+    await createSodas(restaurant.id, sodasCategoryId);
+
+    console.log(`Created ${restaurant.name}`);
+
+    const pizzaProducts = [
+      {
+        name: "Pepperoni Pizza",
+        price: 45,
+        description: description,
+        discountPercentage: 0,
+        imageUrl:
+          "https://utfs.io/f/645ba997-00b1-44ed-9928-b9eb41e93896-berpub.jpg",
+        restaurant: {
+          connect: {
+            id: restaurant.id,
+          },
+        },
+        category: {
+          connect: {
+            id: pizzasCategory.id,
+          },
+        },
+      },
+      {
+        name: "Margarita Pizza",
+        price: 40,
+        description: description,
+        discountPercentage: 5,
+        imageUrl:
+          "https://utfs.io/f/4ee1f69b-e0a3-4166-bae5-b666996bcd3b-berpua.png",
+        restaurant: {
+          connect: {
+            id: restaurant.id,
+          },
+        },
+        category: {
+          connect: {
+            id: pizzasCategory.id,
+          },
+        },
+      },
+      {
+        name: "Hawaiian Pizza",
+        price: 45,
+        description: "A delicious hawaiian pizza",
+        discountPercentage: 5,
+        imageUrl:
+          "https://utfs.io/f/0bb7a869-f369-4506-94ea-6cc23c8dd92f-berpu9.png",
+        restaurant: {
+          connect: {
+            id: restaurant.id,
+          },
+        },
+        category: {
+          connect: {
+            id: pizzasCategory.id,
+          },
+        },
+      },
+      {
+        name: "Vegetarian Pizza",
+        price: 35,
+        description: description,
+        discountPercentage: 0,
+        imageUrl:
+          "https://utfs.io/f/1bb04a24-361c-4e3a-ad2f-81255f2d53b9-berpux.png",
+        restaurant: {
+          connect: {
+            id: restaurant.id,
+          },
+        },
+        category: {
+          connect: {
+            id: pizzasCategory.id,
+          },
+        },
+      },
+      {
+        name: "Meat Lovers Pizza",
+        price: 50,
+        description: description,
+        discountPercentage: 10,
+        imageUrl:
+          "https://utfs.io/f/ead919ee-2e3d-423f-b294-e525f9d6a5b7-berpuy.png",
+        restaurant: {
+          connect: {
+            id: restaurant.id,
+          },
+        },
+        category: {
+          connect: {
+            id: pizzasCategory.id,
+          },
+        },
+      },
+    ];
+
+    for (const product of pizzaProducts) {
+      await prismaClient.product.create({
+        data: product,
+      });
+
+      console.log(`Created ${product.name}`);
+    }
+  }
+};
+
 const createBrazilian = async (
   desertsCategoryId: string,
   juicesCategoryId: string,
+  sodasCategoryId: string,
 ) => {
   const brazilianCategory = await prismaClient.category.create({
     data: {
@@ -641,6 +648,7 @@ const createBrazilian = async (
 
     await createDeserts(restaurant.id, desertsCategoryId);
     await createJuices(restaurant.id, juicesCategoryId);
+    await createSodas(restaurant.id, sodasCategoryId);
 
     const brazilianProducts = [
       {
@@ -1031,6 +1039,140 @@ const createJuices = async (restaurantId: string, categoryId: string) => {
   }
 };
 
+const createSodas = async (restaurantId: string, categoryId: string) => {
+  await prismaClient.restaurant.update({
+    where: {
+      id: restaurantId,
+    },
+    data: {
+      categories: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+  });
+
+  const sodasProducts = [
+    {
+      name: "Coca-Cola",
+      price: 15,
+      description: description,
+      discountPercentage: 5,
+      imageUrl:
+        "https://utfs.io/f/5126e950-40ca-4ef1-a166-16274fec16bc-6b2vea.png",
+      restaurant: {
+        connect: {
+          id: restaurantId,
+        },
+      },
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+    {
+      name: "Fanta Laranja",
+      price: 15,
+      description: description,
+      discountPercentage: 5,
+      imageUrl:
+        "https://utfs.io/f/5126e950-40ca-4ef1-a166-16274fec16bc-6b2vea.png",
+      restaurant: {
+        connect: {
+          id: restaurantId,
+        },
+      },
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+    {
+      name: "Guaraná",
+      price: 15,
+      description: description,
+      discountPercentage: 5,
+      imageUrl:
+        "https://utfs.io/f/5126e950-40ca-4ef1-a166-16274fec16bc-6b2vea.png",
+      restaurant: {
+        connect: {
+          id: restaurantId,
+        },
+      },
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+    {
+      name: "Dolly",
+      price: 15,
+      description: description,
+      discountPercentage: 5,
+      imageUrl:
+        "https://utfs.io/f/5126e950-40ca-4ef1-a166-16274fec16bc-6b2vea.png",
+      restaurant: {
+        connect: {
+          id: restaurantId,
+        },
+      },
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+    {
+      name: "Fanta-Uva",
+      price: 15,
+      description: description,
+      discountPercentage: 5,
+      imageUrl:
+        "https://utfs.io/f/5126e950-40ca-4ef1-a166-16274fec16bc-6b2vea.png",
+      restaurant: {
+        connect: {
+          id: restaurantId,
+        },
+      },
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+    {
+      name: "Sprite",
+      price: 15,
+      description: description,
+      discountPercentage: 5,
+      imageUrl:
+        "https://utfs.io/f/5126e950-40ca-4ef1-a166-16274fec16bc-6b2vea.png",
+      restaurant: {
+        connect: {
+          id: restaurantId,
+        },
+      },
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    }
+  ];
+
+  for (const product of sodasProducts) {
+    await prismaClient.product.create({
+      data: product,
+    });
+
+    console.log(`Created ${product.name}`);
+  }
+};
+
 const main = async () => {
   const desertsCategory = await prismaClient.category.create({
     data: {
@@ -1048,10 +1190,18 @@ const main = async () => {
     },
   });
 
-  await createBurguers(desertsCategory.id, juicesCategory.id);
-  await createPizzas(desertsCategory.id, juicesCategory.id);
-  await createJapanese(desertsCategory.id, juicesCategory.id);
-  await createBrazilian(desertsCategory.id, juicesCategory.id);
+  const sodasCategory = await prismaClient.category.create({
+    data: {
+      name: "Refrigerantes",
+      imageUrl:
+        "https://utfs.io/f/797285c9-2f41-4335-8b5e-70404682fd8f-ukiyqo.png",
+    },
+  });
+
+  await createBurguers(desertsCategory.id, juicesCategory.id, sodasCategory.id);
+  await createPizzas(desertsCategory.id, juicesCategory.id, sodasCategory.id);
+  await createJapanese(desertsCategory.id, juicesCategory.id, sodasCategory.id);
+  await createBrazilian(desertsCategory.id, juicesCategory.id, sodasCategory.id);
 };
 
 main()

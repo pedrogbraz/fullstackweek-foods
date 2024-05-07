@@ -8,7 +8,7 @@ import { db } from "./_lib/prisma";
 import PromoBanner from "./_components/promo-banner";
 import RestaurantList from "./_components/restaurant-list";
 import Link from "next/link";
-import Image from "next/image";
+import { CarouselSize } from "./_components/carousel";
 
 const fetch = async () => {
   const getProducts = db.product.findMany({
@@ -57,12 +57,15 @@ const Home = async () => {
       <div className="px-5 pt-6 md:hidden">
         <Search />
       </div>
-      <div className="w-full h-[500px] bg-primary justify-around" id="content">
-        <div className="py-32 px-12 space-y-8">
-          <h1 className="font-bold text-white text-5xl">Está com fome?</h1>
-          <span className="text-white text-lg">Com apenas alguns cliques, encontre refeições acessíveis perto de você.</span>
+      <div className="h-[500px] w-full justify-around bg-primary" id="content">
+        <div className="space-y-8 px-12 py-32">
+          <h1 className="text-5xl font-bold text-white">Está com fome?</h1>
+          <span className="text-lg text-white">
+            Com apenas alguns cliques, encontre refeições acessíveis perto de
+            você.
+          </span>
 
-          <div className="bg-white h-[88px] rounded-lg p-6 max-w-[658px] w-[658px]">
+          <div className="h-[88px] w-[658px] max-w-[658px] rounded-lg bg-white p-6">
             <Search />
           </div>
         </div>
@@ -108,8 +111,8 @@ const Home = async () => {
         </Link>
       </div>
 
-      <div className="px-5 pt-6 flex gap-5 my-5 md:px-12" id="xs">
-      <Link href={`/categories/${pizzasCategory?.id}/products`}>
+      <div className="my-5 flex gap-5 px-5 pt-6 md:px-12" id="xs">
+        <Link href={`/categories/${pizzasCategory?.id}/products`}>
           <PromoBanner
             src="/promo-banner-pizza.png"
             alt="A partir de R$17,90 em lanches"

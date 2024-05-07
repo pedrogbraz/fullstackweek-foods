@@ -23,7 +23,7 @@ interface ProductItemProps {
 const ProductItem = ({ product, className }: ProductItemProps) => {
   return (
     <Link
-      className={cn("w-[150px] min-w-[150px]", className)}
+      className={cn("w-[150px] min-w-[150px] md:rounded-lg md:p-2 md:hover:bg-[#F4F4F5] duration-300", className)}
       href={`/products/${product.id}`}
     >
       <div className="w-full space-y-2">

@@ -68,6 +68,9 @@
   #content {
     display: none;
   }
+  #categoryList {
+    display: none;
+  }
   
 }
 

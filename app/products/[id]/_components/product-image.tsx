@@ -26,7 +26,7 @@ const ProductImage = ({ product }: ProductImageProps) => {
       />
 
       <Button
-        className="absolute left-4 top-4 rounded-full bg-white text-foreground hover:text-white"
+        className="absolute left-4 w-10 h-10 top-4 rounded-full bg-white text-foreground hover:text-white duration-300"
         size="icon"
         onClick={handleBackClick}
       >

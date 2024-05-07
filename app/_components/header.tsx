@@ -3,18 +3,12 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import {
-  CupSoda,
-  Fish,
-  Grape,
   HeartIcon,
   HomeIcon,
   LogInIcon,
   LogOutIcon,
   MenuIcon,
-  Pizza,
-  Sandwich,
   ScrollTextIcon,
-  Utensils,
 } from "lucide-react";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -27,18 +21,15 @@ import {
 } from "./ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
-import { useRouter } from "next/navigation";
-import Search from "./search";
 
 const Header = () => {
   const { data } = useSession();
-  const router = useRouter();
 
   const handleSignOutClick = () => signOut();
   const handleSignInClick = () => signIn();
 
   return (
-    <div className="flex items-center justify-between px-5 py-5 md:px-12">
+    <div className="flex items-center justify-between px-5 py-3 md:px-12">
       <Link href="/">
         <div className="relative h-[30px] w-[100px]">
           <Image
@@ -56,7 +47,7 @@ const Header = () => {
           <Button
             size="icon"
             variant="outline"
-            className="h-10 w-10 border-none bg-transparent"
+            className="border-none bg-transparent"
           >
             <MenuIcon />
           </Button>
@@ -94,21 +85,21 @@ const Header = () => {
             <>
               <div className="flex items-center justify-between pt-10">
                 <h2 className="font-semibold">Olá. Faça seu login!</h2>
-                <Button size="icon" className="w-9 h-9" onClick={handleSignInClick}>
-                  <LogInIcon size={18} />
+                <Button size="icon" onClick={handleSignInClick}>
+                  <LogInIcon />
                 </Button>
               </div>
             </>
           )}
 
-          <div className="py-4">
+          <div className="py-6">
             <Separator />
           </div>
 
           <div className="space-y-2">
             <Button
               variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal"
             >
               <HomeIcon size={16} />
               <span className="block">Início</span>
@@ -118,7 +109,7 @@ const Header = () => {
               <>
                 <Button
                   variant="ghost"
-                  className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
+                  className="w-full justify-start space-x-3 rounded-full text-sm font-normal"
                   asChild
                 >
                   <Link href="/my-orders">
@@ -129,7 +120,7 @@ const Header = () => {
 
                 <Button
                   variant="ghost"
-                  className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
+                  className="w-full justify-start space-x-3 rounded-full text-sm font-normal"
                   asChild
                 >
                   <Link href="/my-favorite-restaurants">
@@ -141,65 +132,14 @@ const Header = () => {
             )}
           </div>
 
-          <div className="py-4">
+          <div className="py-6">
             <Separator />
           </div>
 
-          <div className="space-y-1">
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            >
-              <Utensils size={16} />
-              <span className="block">Pratos</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            >
-              <Sandwich size={16} />
-              <span className="block">Lanches</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            >
-              <Pizza size={16} />
-              <span className="block">Pizza</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            >
-              <Fish size={16} />
-              <span className="block">Japonesa</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            >
-              <Grape size={16} />
-              <span className="block">Sucos</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            >
-              <CupSoda size={16} />
-              <span className="block">Refrigerantes</span>
-            </Button>
-          </div>
-
-          {data?.user && (
-            <div className="py-4">
-              <Separator />
-            </div>
-          )}
-
           {data?.user && (
             <Button
               variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
+              className="w-full justify-start space-x-3 rounded-full text-sm font-normal"
               onClick={handleSignOutClick}
             >
               <LogOutIcon size={16} />

@@ -8,7 +8,6 @@ import { db } from "./_lib/prisma";
 import PromoBanner from "./_components/promo-banner";
 import RestaurantList from "./_components/restaurant-list";
 import Link from "next/link";
-import { CarouselSize } from "./_components/carousel";
 
 const fetch = async () => {
   const getProducts = db.product.findMany({

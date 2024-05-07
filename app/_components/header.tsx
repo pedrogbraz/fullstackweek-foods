@@ -28,14 +28,20 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { useRouter } from "next/navigation";
-import Search from "./search";
+import { useState } from "react";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "./ui/alert-dialog";
 
 const Header = () => {
-  const { data } = useSession();
-  const router = useRouter();
 
-  const handleSignOutClick = () => signOut();
   const handleSignInClick = () => signIn();
+  const { data } = useSession();
+  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+
+  const handleSignOutClick = () => setIsConfirmDialogOpen(true);
+  const handleSignOutConfirm = () => {
+    signOut();
+    setIsConfirmDialogOpen(false);
+  };
 
   return (
     <div className="flex items-center justify-between px-5 py-5 md:px-12">
@@ -196,16 +202,32 @@ const Header = () => {
             </div>
           )}
 
-          {data?.user && (
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-              onClick={handleSignOutClick}
-            >
-              <LogOutIcon size={16} />
-              <span className="block">Sair da conta</span>
-            </Button>
-          )}
+{data?.user && (
+        <>
+          <Button
+            variant="ghost"
+            className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
+            onClick={handleSignOutClick}
+          >
+            <LogOutIcon size={16} />
+            <span className="block">Sair da conta</span>
+          </Button>
+          <AlertDialog open={isConfirmDialogOpen} onOpenChange={setIsConfirmDialogOpen}>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Tem certeza que deseja sair da conta?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Ao sair da conta, você será desconectado e não poderá acessar recursos exclusivos de usuários logados.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel onClick={() => setIsConfirmDialogOpen(false)}>Cancelar</AlertDialogCancel>
+                <AlertDialogAction onClick={handleSignOutConfirm}>Confirmar</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </>
+      )}
         </SheetContent>
       </Sheet>
     </div>

@@ -15,7 +15,7 @@ interface ProductListProps {
 
 const ProductList = ({ products }: ProductListProps) => {
   return (
-    <div className="flex gap-4 md:justify-center">
+    <div className="flex gap-3 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden md:px-12">
       {products.map((product) => (
         <ProductItem key={product.id} product={product} />
       ))}

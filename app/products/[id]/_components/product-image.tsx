@@ -16,23 +16,27 @@ const ProductImage = ({ product }: ProductImageProps) => {
   const handleBackClick = () => router.back();
 
   return (
-    <div className="relative h-[360px] w-full">
-      <Image
-        src={product.imageUrl}
-        alt={product.name}
-        fill
-        sizes="100%"
-        className="object-cover"
-      />
+    <>
+      <div className="md:flex">
+        <div className="relative h-[360px] w-full  md:h-[500px] md:w-[600px] md:rounded-lg">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            sizes="100%"
+            className="object-cover md:rounded-lg"
+          />
 
-      <Button
-        className="absolute left-4 w-10 h-10 top-4 rounded-full bg-white text-foreground hover:text-white duration-300"
-        size="icon"
-        onClick={handleBackClick}
-      >
-        <ChevronLeftIcon />
-      </Button>
-    </div>
+          <Button
+            className="absolute left-4 top-4 h-10 w-10 rounded-full bg-white text-foreground duration-300 hover:text-white md:hidden"
+            size="icon"
+            onClick={handleBackClick}
+          >
+            <ChevronLeftIcon />
+          </Button>
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -78,6 +78,12 @@
   #HeaderHidden {
     display: none;
   }
+  #headerProducts {
+    display: none;
+  }
+  #JuicesDesktop {
+    display: none;
+  }
   
 }
 

@@ -34,9 +34,9 @@ const Restaurants = ({ userFavoriteRestaurants }: RestaurantProps) => {
   return (
     <>
       <Header />
-      <div className="px-5 py-6">
+      <div className="px-5 py-6 md:px-12">
         <h2 className="mb-6 text-lg font-semibold">Restaurantes Encontrados</h2>
-        <div className="flex w-full flex-col gap-6">
+        <div className="flex w-full flex-col gap-6 md:grid md:grid-cols-3">
           {restaurants.map((restaurant) => (
             <RestaurantItem
               key={restaurant.id}

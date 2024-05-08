@@ -51,7 +51,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex items-center justify-between px-5 py-5 md:px-12">
+    <div className="flex items-center justify-between px-5 py-5 md:px-12 md:shadow-sm">
       <Link href="/">
         <div className="relative h-[30px] w-[100px]">
           <Image

@@ -69,7 +69,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
     <div>
       <Header />
 
-      <div className="md:flex md:px-12">
+      <div className="md:flex md:px-12 mt-10">
         <div>
           <RestaurantImage
             restaurant={restaurant}

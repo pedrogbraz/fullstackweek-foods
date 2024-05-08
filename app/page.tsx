@@ -56,7 +56,7 @@ const Home = async () => {
       <div className="px-5 pt-6 md:hidden">
         <Search />
       </div>
-      <div className="h-[500px] w-full justify-around bg-primary" id="content">
+      <div className="w-full justify-around bg-primary" id="content">
         <div className="space-y-8 px-12 py-32">
           <h1 className="text-5xl font-bold text-white">Está com fome?</h1>
           <span className="text-lg text-white">

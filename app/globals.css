@@ -74,6 +74,10 @@
   #aboutRestaurant {
     display: none;
   }
+
+  #HeaderHidden {
+    display: none;
+  }
   
 }
 

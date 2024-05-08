@@ -113,14 +113,14 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
               </div>
             ))}
           </div>
-          <div className="px-6 max-h-44">
+          <div className="px-6">
             <h1 className="font-semibold">Sobre</h1>
-            <span className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum modi magni aspernatur quod necessitatibus quis fugit, molestiae odio fugiat dolores sapiente facere distinctio atque labore neque a, saepe illo veritatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde ratione eaque fugiat asperiores accusamus, ex quae ad temporibus eligendi, sit tenetur at quisquam quia exercitationem amet! Quasi at earum</span>
+            <span className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum modi magni aspernatur quod necessitatibus quis fugit, molestiae odio fugiat dolores sapiente facere distinctio atque labore neque a, saepe illo veritatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde ratione eaque fugiat asperiores accusamus, ex quae ad temporibus eligendi!</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 space-y-4 pt-4">
+      <div className="mt-6 space-y-4 pt-2">
         {/* TODO: mostrar produtos mais pedidos quando implementarmos realização de pedido */}
         <h2 className="px-5 font-semibold md:px-12">Mais Pedidos</h2>
         <ProductList products={restaurant.products} />

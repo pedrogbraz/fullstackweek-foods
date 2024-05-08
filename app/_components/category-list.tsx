@@ -9,7 +9,7 @@ const CategoryList = async () => {
   });
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:flex">
+    <div className="flex gap-4 md:justify-center">
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}

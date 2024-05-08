@@ -71,6 +71,9 @@
   #categoryList {
     display: none;
   }
+  #aboutRestaurant {
+    display: none;
+  }
   
 }
 

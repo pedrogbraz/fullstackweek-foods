@@ -1,7 +1,13 @@
 "use client";
 
 import { Restaurant, UserFavoriteRestaurant } from "@prisma/client";
-import { BikeIcon, HeartIcon, StarIcon, TimerIcon } from "lucide-react";
+import {
+  BikeIcon,
+  HeartIcon,
+  Loader2,
+  StarIcon,
+  TimerIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "../_helpers/price";
 import { Button } from "./ui/button";
@@ -10,6 +16,17 @@ import { cn } from "../_lib/utils";
 import { toggleFavoriteRestaurant } from "../_actions/restaurant";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "./ui/alert-dialog";
+import { useState } from "react";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
@@ -27,8 +44,11 @@ const RestaurantItem = ({
     (fav) => fav.restaurantId === restaurant.id,
   );
 
+  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+
   const handleFavoriteClick = async () => {
     if (!data?.user.id) return;
+
     try {
       await toggleFavoriteRestaurant(data?.user.id, restaurant.id);
       toast.success(
@@ -41,9 +61,19 @@ const RestaurantItem = ({
     }
   };
 
+  const handleConfirmRemoveFavorite = async () => {
+    setIsConfirmDialogOpen(false); // Fechar o AlertDialog
+    await handleFavoriteClick(); // Chamar a função para remover o restaurante dos favoritos
+  };
+
   return (
-    <div className={cn("min-w-[266px] max-w-[266px] md:min-w-[381px] md:max-w-[381px]", className)}>
-      <div className="w-full space-y-3">
+    <div
+      className={cn(
+        "min-w-[266px] max-w-[266px] md:min-w-[370px] md:max-w-[370px]",
+        className,
+      )}
+    >
+      <div className="w-full space-y-3 duration-300 md:rounded-lg md:p-2 md:hover:bg-[#F4F4F5]">
         {/* IMAGEM */}
         <div className="relative h-[136px] w-full">
           <Link href={`/restaurants/${restaurant.id}`}>
@@ -65,11 +95,36 @@ const RestaurantItem = ({
             <Button
               size="icon"
               className={`absolute right-2 top-2 h-7 w-7 rounded-full bg-gray-700 ${isFavorite && "bg-primary hover:bg-gray-700"}`}
-              onClick={handleFavoriteClick}
+              onClick={() => setIsConfirmDialogOpen(true)}
             >
               <HeartIcon size={16} className="fill-white" />
             </Button>
           )}
+          <AlertDialog
+            open={isConfirmDialogOpen}
+            onOpenChange={setIsConfirmDialogOpen}
+          >
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  {isFavorite
+                    ? "Remover dos Favoritos"
+                    : "Adicionar aos Favoritos"}
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  {isFavorite
+                    ? "Tem certeza que deseja remover este restaurante dos favoritos?"
+                    : "Tem certeza que deseja adicionar este restaurante aos favoritos?"}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                <AlertDialogAction onClick={handleConfirmRemoveFavorite}>
+                  Confirmar
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
         {/* TEXTO */}
         <div>

@@ -77,7 +77,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
           />
         </div>
 
-        <div className="w-full pt-1 space-y-4">
+        <div className="w-full space-y-4 pt-1">
           <div className="relative z-50 mt-[-1.5rem] flex items-center justify-between rounded-tl-3xl rounded-tr-3xl bg-white px-5 pt-5 md:static">
             {/* TITULO */}
             <div className="flex items-center gap-[0.375rem]">
@@ -114,8 +114,14 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
             ))}
           </div>
           <div className="px-6">
-            <h1 className="font-semibold">Sobre</h1>
-            <span className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum modi magni aspernatur quod necessitatibus quis fugit, molestiae odio fugiat dolores sapiente facere distinctio atque labore neque a, saepe illo veritatis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde ratione eaque fugiat asperiores accusamus, ex quae ad temporibus eligendi!</span>
+            <h1 className="font-semibold pb-2">Sobre</h1>
+            <span className="text-sm text-muted-foreground">
+              O SushiDojo é uma joia gastronômica que transporta seus clientes
+              para o coração do Japão, com sua atmosfera serena, design
+              minimalista e um balcão de sushi onde mestres habilidosos preparam
+              pratos autênticos com ingredientes frescos e selecionados,
+              garantindo uma experiência culinária excepcional e memorável.
+            </span>
           </div>
         </div>
       </div>

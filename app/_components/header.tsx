@@ -28,10 +28,18 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import { useState } from "react";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "./ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "./ui/alert-dialog";
 
 const Header = () => {
-
   const handleSignInClick = () => signIn();
   const { data } = useSession();
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
@@ -99,7 +107,11 @@ const Header = () => {
             <>
               <div className="flex items-center justify-between pt-10">
                 <h2 className="font-semibold">Olá. Faça seu login!</h2>
-                <Button size="icon" className="w-9 h-9" onClick={handleSignInClick}>
+                <Button
+                  size="icon"
+                  className="h-9 w-9"
+                  onClick={handleSignInClick}
+                >
                   <LogInIcon size={18} />
                 </Button>
               </div>
@@ -110,13 +122,15 @@ const Header = () => {
             <Separator />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1">
             <Button
               variant="ghost"
               className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
             >
-              <HomeIcon size={16} />
-              <span className="block">Início</span>
+              <Link className="flex gap-3" href="/">
+                <HomeIcon size={16} />
+                <span className="block">Início</span>
+              </Link>
             </Button>
 
             {data?.user && (
@@ -201,32 +215,44 @@ const Header = () => {
             </div>
           )}
 
-{data?.user && (
-        <>
-          <Button
-            variant="ghost"
-            className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
-            onClick={handleSignOutClick}
-          >
-            <LogOutIcon size={16} />
-            <span className="block">Sair da conta</span>
-          </Button>
-          <AlertDialog open={isConfirmDialogOpen} onOpenChange={setIsConfirmDialogOpen}>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Tem certeza que deseja sair da conta?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Ao sair da conta, você será desconectado e não poderá acessar recursos exclusivos de usuários logados.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel onClick={() => setIsConfirmDialogOpen(false)}>Cancelar</AlertDialogCancel>
-                <AlertDialogAction onClick={handleSignOutConfirm}>Confirmar</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </>
-      )}
+          {data?.user && (
+            <>
+              <Button
+                variant="ghost"
+                className="w-full justify-start space-x-3 rounded-full text-sm font-normal hover:bg-primary hover:text-white"
+                onClick={handleSignOutClick}
+              >
+                <LogOutIcon size={16} />
+                <span className="block">Sair da conta</span>
+              </Button>
+              <AlertDialog
+                open={isConfirmDialogOpen}
+                onOpenChange={setIsConfirmDialogOpen}
+              >
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Tem certeza que deseja sair da conta?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Ao sair da conta, você será desconectado e não poderá
+                      acessar recursos exclusivos de usuários logados.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel
+                      onClick={() => setIsConfirmDialogOpen(false)}
+                    >
+                      Cancelar
+                    </AlertDialogCancel>
+                    <AlertDialogAction onClick={handleSignOutConfirm}>
+                      Confirmar
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </>
+          )}
         </SheetContent>
       </Sheet>
     </div>
